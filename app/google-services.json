@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577737892287",
+    "project_id": "verduritassa-eb7fd",
+    "storage_bucket": "verduritassa-eb7fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577737892287:android:cd2342b1e314c9bd90010a",
+        "android_client_info": {
+          "package_name": "karen.gutierrez.verduritassa_karengutierrez"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_Tojx1SryUqnHc7PcFeTStGC7v6sHI9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

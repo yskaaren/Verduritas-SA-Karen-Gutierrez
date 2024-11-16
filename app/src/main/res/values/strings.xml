@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Verduritas SA-Karen Gutierrez</string>
+    <string name="default_web_client_id">AIzaSyD_Tojx1SryUqnHc7PcFeTStGC7v6sHI9o</string>
+
+    <string-array name="plantas">
+        <item>Tomate</item>
+        <item>Cebolla</item>
+        <item>Lechuga</item>
+        <item>Apio</item>
+        <item>Choclo</item>
+    </string-array>
+
+</resources>

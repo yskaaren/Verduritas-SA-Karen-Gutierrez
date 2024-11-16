@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- TextView para mostrar el nombre del cultivo -->
+
+    <!-- ImageButton para mostrar el botón de opciones con un ícono -->
+    <TextView
+        android:id="@+id/textViewCultivo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Nombre del cultivo, Fecha, Fecha Cosecha"
+        android:textSize="16sp"
+        android:ellipsize="end"
+        android:maxLines="2" />
+
+    <!-- ImageButton para las opciones -->
+    <ImageButton
+        android:id="@+id/btnOptions"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:contentDescription="Opciones"
+        android:scaleType="centerInside"
+        android:src="@drawable/settings"
+        android:tint="@color/background_boton"/>
+</LinearLayout>
+
