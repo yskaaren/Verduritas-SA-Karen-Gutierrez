@@ -1,0 +1,1 @@
+Verduritas SA es una empresa de cultivos orgánicos, la cuál trabaja con una aplicación para gestionar los cultivos activos del usuario. La aplicación permite el registro de nuevos cultivos y el cálculo de la fecha probable de cosecha, además de mostrar una lista de los cultivos activos.
