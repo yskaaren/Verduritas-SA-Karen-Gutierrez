@@ -27,25 +27,27 @@
         android:layout_marginTop="16dp"
         android:text="Verduritas SA"
         android:textSize="34sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="58dp"
+        android:layout_width="306dp"
+        android:layout_height="50dp"
         android:layout_marginTop="36dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.847"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <TextView
             android:id="@+id/textBienvenida"
-            android:layout_width="match_parent"
+            android:layout_width="266dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Bienvenido usuario"
             android:textSize="24sp" />
     </LinearLayout>
@@ -59,19 +61,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="16dp" /><![CDATA[
-
-    />
-
-
-
-    ]]>
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/black"
+        />
 
     <ImageButton
         android:id="@+id/btnAgregarCultivo"
         android:layout_width="54dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="484dp"
+        android:layout_marginBottom="540dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="Agregar Cultivo"
@@ -99,7 +97,7 @@
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toTopOf="parent"
         android:tint="@color/background_boton"/>
-        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
