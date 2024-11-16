@@ -40,6 +40,8 @@ public class ListaCultivoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_cultivos);
+
+        // Configuración de la barra de estado
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -47,59 +49,59 @@ public class ListaCultivoActivity extends AppCompatActivity {
         });
 
         ImageButton btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-
         btnCerrarSesion.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut(); // Cierra la sesión en Firebase
+            FirebaseAuth.getInstance().signOut();
             Intent intent = new Intent(ListaCultivoActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpia el stack de actividades
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            finish(); // Finaliza la actividad actual
+            finish();
         });
 
-        // Obtener una instancia de Firestore
+        // Configuración de Firestore y lista
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         ListView lista = findViewById(R.id.lista);
 
-        // Obtener el email del usuario autenticado
+        // Obtener el usuario actual
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            String email = currentUser.getEmail();  // Obtener el email del usuario autenticado
+            String email = currentUser.getEmail();
 
-            // Consultar la colección "cultivos" filtrando por el correo del usuario
+            // Escuchar cambios en tiempo real
             db.collection("cultivos")
-                    .whereEqualTo("correo", email)  // Filtrar los cultivos por el correo
-                    .get()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
+                    .whereEqualTo("correo", email)
+                    .addSnapshotListener((snapshots, error) -> {
+                        if (error != null) {
+                            Log.w("FirestoreListener", "Error al escuchar cambios: ", error);
+                            Toast.makeText(this, "Error al escuchar cambios", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (snapshots != null) {
                             List<Cultivo> listaCultivos = new ArrayList<>();
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String id = document.getId();  // Obtener el ID del documento
+                            for (QueryDocumentSnapshot document : snapshots) {
+                                String id = document.getId();
                                 String nombre = document.getString("nombre");
                                 String fecha = document.getString("fecha");
-                                String fechaCosecha = document.getString("fecha_cosecha");  // Obtener la fecha de cosecha
+                                String fechaCosecha = document.getString("fecha_cosecha");
 
-                                listaCultivos.add(new Cultivo(id, nombre, fecha, fechaCosecha));  // Crear objeto Cultivo con la fecha de cosecha
+                                listaCultivos.add(new Cultivo(id, nombre, fecha, fechaCosecha));
                             }
 
-                            // Aquí es donde se coloca el código para configurar el adaptador
+                            // Actualizar el adaptador
                             CultivoAdapter adapter = new CultivoAdapter(ListaCultivoActivity.this, listaCultivos);
                             lista.setAdapter(adapter);
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error al leer los datos", Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
-            // Si el usuario no está autenticado, redirigir a la pantalla de inicio de sesión
             Intent intent = new Intent(ListaCultivoActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
 
-        // Obtener el botón de imagen "Agregar Cultivo" y configurarlo
+        // Configuración del botón "Agregar Cultivo"
         ImageButton btnAgregarCultivo = findViewById(R.id.btnAgregarCultivo);
         btnAgregarCultivo.setOnClickListener(v -> {
-            // Al presionar el botón, se abre la actividad FormularioCultivoActivity
             Intent intent = new Intent(ListaCultivoActivity.this, FormularioCultivoActivity.class);
             startActivity(intent);
         });
